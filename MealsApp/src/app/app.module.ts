@@ -21,6 +21,7 @@ import { RecipeStartComponent } from './recipies/recipe-start/recipe-start.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeService } from './recipies/recipe.service';
 import { DataStorageService } from './shared/data-storage.service';
+import { AuthGuard } from './auth/auth-guard.service';
 
 @NgModule({
    declarations: [
@@ -45,7 +46,7 @@ import { DataStorageService } from './shared/data-storage.service';
       HttpModule,
       FormsModule
    ],
-   providers: [ShoppingListService, RecipeService, DataStorageService, AuthService],
+   providers: [ShoppingListService, RecipeService, DataStorageService, AuthService, AuthGuard],
    bootstrap: [
       AppComponent
    ]
