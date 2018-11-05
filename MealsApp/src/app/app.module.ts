@@ -1,3 +1,5 @@
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
 import { RecipeEditComponent } from './recipies/recipe-edit/recipe-edit.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
@@ -31,7 +33,9 @@ import { DataStorageService } from './shared/data-storage.service';
       ShoppingEditComponent,
       DropdownDirective,
       RecipeStartComponent,
-      RecipeEditComponent
+      RecipeEditComponent,
+      SigninComponent,
+      SignupComponent
    ],
    imports: [
       BrowserModule,
