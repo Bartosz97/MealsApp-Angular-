@@ -1,3 +1,4 @@
+import { AuthService } from './auth/auth.service';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { RecipeEditComponent } from './recipies/recipe-edit/recipe-edit.component';
@@ -44,7 +45,7 @@ import { DataStorageService } from './shared/data-storage.service';
       HttpModule,
       FormsModule
    ],
-   providers: [ShoppingListService, RecipeService, DataStorageService],
+   providers: [ShoppingListService, RecipeService, DataStorageService, AuthService],
    bootstrap: [
       AppComponent
    ]
