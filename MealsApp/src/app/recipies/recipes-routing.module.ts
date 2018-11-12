@@ -1,10 +1,10 @@
+import { AuthGuard } from './../auth/auth-guard.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RecipiesComponent } from './recipies.component';
 import { RecipeStartComponent } from './recipe-start/recipe-start.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
-import { AuthGuard } from '../auth/auth-guard.service';
 
 const recipesRoutes: Routes = [
     {path: '', component: RecipiesComponent, children: [
@@ -19,6 +19,9 @@ const recipesRoutes: Routes = [
     imports: [
         RouterModule.forChild(recipesRoutes)
     ],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [
+        AuthGuard
+    ]
 })
 export class RecipesRoutingModule {}
