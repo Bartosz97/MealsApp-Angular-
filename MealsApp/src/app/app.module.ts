@@ -13,23 +13,29 @@ import { HeaderComponent } from './header/header.component';
 import { RecipeService } from './recipies/recipe.service';
 import { DataStorageService } from './shared/data-storage.service';
 import { AuthGuard } from './auth/auth-guard.service';
-import { RecipesModule } from './recipies/recipes.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
    declarations: [
       AppComponent,
-      HeaderComponent
+      HeaderComponent,
+      HomeComponent
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
       HttpModule,
-      RecipesModule,
       SharedModule,
       ShoppingListModule,
       AuthModule
    ],
-   providers: [ShoppingListService, RecipeService, DataStorageService, AuthService, AuthGuard],
+   providers: [
+      ShoppingListService,
+      RecipeService,
+      DataStorageService,
+      AuthService,
+      AuthGuard
+   ],
    bootstrap: [
       AppComponent
    ]
