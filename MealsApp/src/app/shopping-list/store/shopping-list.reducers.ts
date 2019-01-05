@@ -1,10 +1,6 @@
 import * as ShoppingListActions from './shopping-list.actions';
 import { Ingredient } from '../../shared/ingredient.model';
 
-
-export interface AppState {
-    shoppingList: State;
-}
 export interface State {
     ingredients: Ingredient[];
     editedIngredient: Ingredient;
@@ -57,6 +53,12 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
             ...state,
             editedIngredient: editedIngredient,
             editedIngredientIndex: action.payload
+        };
+        case ShoppingListActions.STOP_EDIT:
+        return {
+            ...state,
+            editedIngredient: null,
+            editedIngredientIndex: -1
         };
         default:
         return state;

@@ -10,13 +10,15 @@
         <li routerLinkActive="active"><a routerLink="/shopping-list">Lista zakupów</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <ng-template [ngIf]="!authService.isAuthenticated()">
+        <ng-template [ngIf]="!(authState | async).authenticated">
             <li><a routerLink="/signup">Zarejestruj się</a></li>
             <li><a routerLink="/signin">Zaloguj się</a></li>
         </ng-template>
         
-        <li><a style="cursor: pointer;" (click)="onLogout()" *ngIf="authService.isAuthenticated()">Wyloguj się</a></li>
-        <li class="dropdown" appDropdown *ngIf="authService.isAuthenticated()">
+        <li><a style="cursor: pointer;" 
+          (click)="onLogout()" 
+          *ngIf="(authState | async).authenticated">Wyloguj się</a></li>
+        <li class="dropdown" appDropdown *ngIf="(authState | async).authenticated">
           <a style="cursor: pointer;" class="dropdown-toggle" role="button">Zarządzaj <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a style="cursor: pointer;" (click)="onSaveData()">Zapisz dane</a></li>
