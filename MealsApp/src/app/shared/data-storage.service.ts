@@ -3,7 +3,7 @@ import { RecipeService } from './../recipies/recipe.service';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 
 @Injectable()
 export class DataStorageService {
@@ -15,11 +15,14 @@ export class DataStorageService {
         const token = this.authService.getToken();
   //      const headers = new HttpHeaders().set('Authorization', 'Bearer safdfaf');
 
-        return this.httpClient.put('https://recipebook-e10a2.firebaseio.com/recipes.json', this.recipeService.getRecipes(), {
-            observe: 'body',
-            params: new HttpParams().set('auth', token)
-   //         headers: headers
-        });
+//         return this.httpClient.put('https://recipebook-e10a2.firebaseio.com/recipes.json', this.recipeService.getRecipes(), {
+//             observe: 'body',
+//             params: new HttpParams().set('auth', token)
+//    //         headers: headers
+//         });
+        const req = new HttpRequest('PUT', 'https://recipebook-e10a2.firebaseio.com/recipes.json',
+        this.recipeService.getRecipes(), {reportProgress: true, params: new HttpParams().set('auth', token)});
+        return this.httpClient.request(req);
     }
 
     getRecipes() {
