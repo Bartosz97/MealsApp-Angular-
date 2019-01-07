@@ -12,7 +12,7 @@ export class DataStorageService {
     }
 
     storeRecipes() {
-        const token = this.authService.getToken();
+     //   const token = this.authService.getToken();
   //      const headers = new HttpHeaders().set('Authorization', 'Bearer safdfaf');
 
 //         return this.httpClient.put('https://recipebook-e10a2.firebaseio.com/recipes.json', this.recipeService.getRecipes(), {
@@ -21,14 +21,15 @@ export class DataStorageService {
 //    //         headers: headers
 //         });
         const req = new HttpRequest('PUT', 'https://recipebook-e10a2.firebaseio.com/recipes.json',
-        this.recipeService.getRecipes(), {reportProgress: true, params: new HttpParams().set('auth', token)});
+        this.recipeService.getRecipes(), {reportProgress: true});
         return this.httpClient.request(req);
     }
 
     getRecipes() {
-        const token = this.authService.getToken();
+     //   const token = this.authService.getToken();
 
-        this.httpClient.get<Recipe[]>('https://recipebook-e10a2.firebaseio.com/recipes.json?auth=' + token, {
+   //     this.httpClient.get<Recipe[]>('https://recipebook-e10a2.firebaseio.com/recipes.json?auth=' + token, {
+        this.httpClient.get<Recipe[]>('https://recipebook-e10a2.firebaseio.com/recipes.json?auth=', {
             observe: 'body',
             responseType: 'json'
         })
