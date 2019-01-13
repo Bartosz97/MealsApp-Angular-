@@ -2,12 +2,11 @@ import { Recipe } from './../recipies/recipe.model';
 import { RecipeService } from './../recipies/recipe.service';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { AuthService } from '../auth/auth.service';
 import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 
 @Injectable()
 export class DataStorageService {
-    constructor(private httpClient: HttpClient, private recipeService: RecipeService, private authService: AuthService) {
+    constructor(private httpClient: HttpClient, private recipeService: RecipeService) {
 
     }
 

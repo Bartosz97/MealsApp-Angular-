@@ -6,7 +6,6 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { DataStorageService } from '../shared/data-storage.service';
 import { RecipeService } from '../recipies/recipe.service';
-import { AuthService } from '../auth/auth.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../shared/auth.interceptor';
 
@@ -26,7 +25,6 @@ import { AuthInterceptor } from '../shared/auth.interceptor';
     providers: [
         RecipeService,
         DataStorageService,
-        AuthService,
         {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
         {provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true}
     ]

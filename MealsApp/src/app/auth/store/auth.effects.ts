@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 
@@ -39,12 +40,13 @@ export class AuthEffects {
         return action.payload;
     })
     , switchMap((authData: {username: string, password: string}) => {
-        return from(firebase.auth().signInAndRetrieveDataWithEmailAndPassword(authData.username, authData.password));
+        return from(firebase.auth().signInWithEmailAndPassword(authData.username, authData.password));
     })
     , switchMap(() => {
         return from(firebase.auth().currentUser.getIdToken());
     })
     , mergeMap((token: string) => {
+        this.router.navigate(['/']);
         return [
             {
                 type: AuthActions.SIGNIN
@@ -56,7 +58,7 @@ export class AuthEffects {
         ];
     }));
 
-    constructor(private actions$: Actions) {
+    constructor(private actions$: Actions, private router: Router) {
 
     }
 
