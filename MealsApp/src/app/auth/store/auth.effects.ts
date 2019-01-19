@@ -60,10 +60,10 @@ export class AuthEffects {
 
     @Effect({dispatch: false})
     authLogout = this.actions$
-    .ofType(AuthActions.LOGOUT)
-    .do(() => {
+    .pipe(ofType(AuthActions.LOGOUT)
+    , map(() => {
         this.router.navigate(['/']);
-    });
+    }));
 
     constructor(private actions$: Actions, private router: Router) {
 

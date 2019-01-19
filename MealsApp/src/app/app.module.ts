@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { reducers } from './store/app.reducers';
 import { AuthModule } from './auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -12,6 +13,8 @@ import { CoreModule } from './core/core.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './auth/store/auth.effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
    declarations: [
@@ -26,7 +29,9 @@ import { AuthEffects } from './auth/store/auth.effects';
       AuthModule,
       CoreModule,
       StoreModule.forRoot(reducers),
-      EffectsModule.forRoot([AuthEffects])
+      EffectsModule.forRoot([AuthEffects]),
+      StoreRouterConnectingModule,
+      !environment.production ? StoreDevtoolsModule.instrument() : []
    ],
    bootstrap: [
       AppComponent
