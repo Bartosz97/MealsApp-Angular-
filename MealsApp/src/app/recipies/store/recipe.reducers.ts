@@ -17,7 +17,7 @@ const initialState: State = {
             new Ingredient('Mięso', 1),
             new Ingredient('Frytki', 20)
         ])
-      ];
+      ]
 };
 export function recipeReducer(state = initialState, action: RecipeActions.RecipeActions) {
     switch (action.type) {
@@ -47,11 +47,10 @@ export function recipeReducer(state = initialState, action: RecipeActions.Recipe
         const oldRecipes = [...state.recipes];
         oldRecipes.splice(action.payload, 1);
         return {
-            ..state,
+            ...state,
             recipes: oldRecipes
         };
         default:
             return state;
     }
-    return state;
 }
