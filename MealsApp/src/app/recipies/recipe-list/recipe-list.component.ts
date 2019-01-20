@@ -1,7 +1,4 @@
-import { FeatureState } from './../store/recipe.reducers';
-import { Recipe } from './../recipe.model';
 import { Component, OnInit} from '@angular/core';
-import { RecipeService } from '../recipe.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';

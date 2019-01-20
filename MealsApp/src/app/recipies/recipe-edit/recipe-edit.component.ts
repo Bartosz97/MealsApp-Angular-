@@ -1,4 +1,3 @@
-import { RecipeService } from './../recipe.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
@@ -16,7 +15,7 @@ export class RecipeEditComponent implements OnInit {
   id: number;
   editMode = false;
   recipeForm: FormGroup;
-  constructor(private route: ActivatedRoute, private recipeService: RecipeService, private router: Router,
+  constructor(private route: ActivatedRoute, private router: Router,
      private store: Store<fromRecipe.FeatureState>) { }
 
   ngOnInit() {

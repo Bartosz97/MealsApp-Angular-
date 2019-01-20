@@ -1,8 +1,8 @@
 import { HttpClient, HttpRequest } from '@angular/common/http';
-import { Effect, Actions, ofType } from '@ngrx/effects';
+import { Effect, Actions} from '@ngrx/effects';
 
 import * as RecipeActions from '../store/recipe.actions';
-import { map, switchMap, withLatestFrom } from 'rxjs/operators';
+import { switchMap, withLatestFrom, map } from 'rxjs/operators';
 import { Recipe } from '../recipe.model';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -12,16 +12,16 @@ import * as fromRecipe from '../store/recipe.reducers';
 export class RecipeEffects {
     @Effect()
     recipeFetch = this.actions$
-    .pipe(ofType(RecipeActions.FETCH_RECIPES)
-    , switchMap((action: RecipeActions.FetchRecipes) => {
+    .ofType(RecipeActions.FETCH_RECIPES)
+    .pipe(switchMap((action: RecipeActions.FetchRecipes) => {
 
        return this.httpClient.get<Recipe[]>('https://recipebook-e10a2.firebaseio.com/recipes.json?auth=', {
             observe: 'body',
             responseType: 'json'
         });
-    })
-    , map(
+    }), map(
         (recipes) => {
+            console.log(recipes);
             for (const recipe of recipes) {
                 if (!recipe['ingredients']) {
                     recipe['ingredients'] = [];
@@ -36,8 +36,8 @@ export class RecipeEffects {
 
     @Effect({dispatch: false})
     recipeStore = this.actions$
-    .pipe(ofType(RecipeActions.STORE_RECIPES)
-    , withLatestFrom(this.store.select('recipes'))
+    .ofType(RecipeActions.STORE_RECIPES)
+    .pipe(withLatestFrom(this.store.select('recipes'))
     , switchMap(([action, state]) => {
         const req = new HttpRequest('PUT', 'https://recipebook-e10a2.firebaseio.com/recipes.json',
         state.recipes, {reportProgress: true});
